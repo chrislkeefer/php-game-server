@@ -1,0 +1,52 @@
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore PHPStorm project files
+/.idea/
+
+# Ignore node modules (if using Node.js tools)
+/node_modules/
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# Ignore environment files
+.env
+
+# Ignore built files
+/build/
+dist/
+
+# Ignore user-specific configuration files
+*.local.php
+*.local.yaml
+
+# Ignore PHPUnit test results
+/testdox.xml
+/testdox.html
+/junit.xml
+/coverage.xml
+/clover.xml
+/coverage/
+.phpunit.result.cache
+
+# Ignore Symfony specific files
+/var/
+/vendor/
+/public/build/
+/public/bundles/
+
+# Ignore other common files and directories
+/.env.local
+/.env.local.php
+/.env.*.local
+/.cache
+.php_cs.cache
+phpunit.result.cache
+/.phpunit.result.cache

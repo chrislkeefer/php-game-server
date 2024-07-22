@@ -1,0 +1,16 @@
+{
+    "name": "chrislkeefer/php-game-server",
+    "description": "Basic game engine using PHP via UDP sockets.",
+    "require": {
+        "php": "^8.2",
+        "react/datagram": "^1.6",
+        "ramsey/collection": "^2.0",
+        "php-di/php-di": "^7.0",
+        "monolog/monolog": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPP\\": "src/"
+        }
+    }
+}
