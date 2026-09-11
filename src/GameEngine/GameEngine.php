@@ -13,6 +13,7 @@ class GameEngine
 
     public function __construct(
         private UdpMessageRouter $messageRouter,
+        private World $world,
     ) {
         $this->messageRouter->registerCommandFQCN(
             GameEngineServiceProvider::commands()
@@ -31,8 +32,9 @@ class GameEngine
 
     public function run(): void
     {
-        $udpServer = UdpServerFactory::create(
+        $loop = UdpServerFactory::create(
             onFulfilled: function ($server) {
+                $this->world->setSocket($server);
                 $server->on('message', function ($message, $address, $server) {
                     $this->messageRouter->route($message, $address, $server);
                 });
@@ -42,6 +44,12 @@ class GameEngine
             },
         );
 
-        $udpServer->run();
+        $tickInterval = 1 / World::TICK_HZ;
+        $loop->addPeriodicTimer($tickInterval, function () {
+            $this->world->broadcastState();
+        });
+
+        echo "Game server listening on UDP 0.0.0.0:12345 (tick " . World::TICK_HZ . "Hz)\n";
+        $loop->run();
     }
 }
